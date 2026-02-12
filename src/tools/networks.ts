@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerNetworkTools(server: McpServer) {
   server.registerTool(
-    "network-list",
+    "network_list",
     {
       description: "List networks",
       inputSchema: z
@@ -35,7 +35,7 @@ export function registerNetworkTools(server: McpServer) {
   );
 
   server.registerTool(
-    "network-info",
+    "network_info",
     {
       description: "Show network details",
       inputSchema: z
@@ -59,7 +59,7 @@ export function registerNetworkTools(server: McpServer) {
   );
 
   server.registerTool(
-    "network-create",
+    "network_create",
     {
       description: "Create a network",
       inputSchema: z
@@ -93,7 +93,7 @@ export function registerNetworkTools(server: McpServer) {
   );
 
   server.registerTool(
-    "network-delete",
+    "network_delete",
     {
       description: "Delete a network",
       inputSchema: z

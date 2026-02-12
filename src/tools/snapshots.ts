@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerSnapshotTools(server: McpServer) {
   server.registerTool(
-    "snapshot-list",
+    "snapshot_list",
     {
       description: "List instance snapshots",
       inputSchema: z
@@ -32,7 +32,7 @@ export function registerSnapshotTools(server: McpServer) {
   );
 
   server.registerTool(
-    "snapshot-create",
+    "snapshot_create",
     {
       description: "Create an instance snapshot",
       inputSchema: z
@@ -64,7 +64,7 @@ export function registerSnapshotTools(server: McpServer) {
   );
 
   server.registerTool(
-    "snapshot-restore",
+    "snapshot_restore",
     {
       description: "Restore an instance snapshot",
       inputSchema: z
@@ -98,7 +98,7 @@ export function registerSnapshotTools(server: McpServer) {
   );
 
   server.registerTool(
-    "snapshot-delete",
+    "snapshot_delete",
     {
       description: "Delete an instance snapshot",
       inputSchema: z

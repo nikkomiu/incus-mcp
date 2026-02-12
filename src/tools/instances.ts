@@ -15,7 +15,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerInstanceTools(server: McpServer) {
   server.registerTool(
-    "instance-list",
+    "instance_list",
     {
       description: "List instances",
       inputSchema: z
@@ -42,7 +42,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-info",
+    "instance_info",
     {
       description: "Get instance info",
       inputSchema: z
@@ -66,7 +66,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-launch",
+    "instance_launch",
     {
       description: "Launch a new instance",
       inputSchema: z
@@ -123,7 +123,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-start",
+    "instance_start",
     {
       description: "Start an instance",
       inputSchema: z
@@ -147,7 +147,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-stop",
+    "instance_stop",
     {
       description: "Stop an instance",
       inputSchema: z
@@ -175,7 +175,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-delete",
+    "instance_delete",
     {
       description: "Delete an instance",
       inputSchema: z
@@ -203,7 +203,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-exec",
+    "instance_exec",
     {
       description: "Execute a command in an instance",
       inputSchema: z
@@ -242,7 +242,7 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
-    "instance-rebuild",
+    "instance_rebuild",
     {
       description: "Rebuild an instance from an image",
       inputSchema: z

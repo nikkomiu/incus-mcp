@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerStorageTools(server: McpServer) {
   server.registerTool(
-    "storage-pool-list",
+    "storage_pool_list",
     {
       description: "List storage pools",
       inputSchema: z
@@ -35,7 +35,7 @@ export function registerStorageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "storage-pool-info",
+    "storage_pool_info",
     {
       description: "Show storage pool details",
       inputSchema: z
@@ -59,7 +59,7 @@ export function registerStorageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "storage-volume-list",
+    "storage_volume_list",
     {
       description: "List storage volumes",
       inputSchema: z
@@ -83,7 +83,7 @@ export function registerStorageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "storage-volume-info",
+    "storage_volume_info",
     {
       description: "Show storage volume details",
       inputSchema: z
@@ -114,7 +114,7 @@ export function registerStorageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "storage-volume-create",
+    "storage_volume_create",
     {
       description: "Create a storage volume",
       inputSchema: z
@@ -155,7 +155,7 @@ export function registerStorageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "storage-volume-delete",
+    "storage_volume_delete",
     {
       description: "Delete a storage volume",
       inputSchema: z

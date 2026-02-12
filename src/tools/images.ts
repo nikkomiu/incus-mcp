@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerImageTools(server: McpServer) {
   server.registerTool(
-    "image-list",
+    "image_list",
     {
       description: "List images",
       inputSchema: z
@@ -35,7 +35,7 @@ export function registerImageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "image-info",
+    "image_info",
     {
       description: "Get image info",
       inputSchema: z
@@ -59,7 +59,7 @@ export function registerImageTools(server: McpServer) {
   );
 
   server.registerTool(
-    "image-delete",
+    "image_delete",
     {
       description: "Delete an image",
       inputSchema: z

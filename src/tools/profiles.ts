@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerProfileTools(server: McpServer) {
   server.registerTool(
-    "profile-list",
+    "profile_list",
     {
       description: "List profiles",
       inputSchema: z
@@ -35,7 +35,7 @@ export function registerProfileTools(server: McpServer) {
   );
 
   server.registerTool(
-    "profile-info",
+    "profile_info",
     {
       description: "Show profile details",
       inputSchema: z
@@ -59,7 +59,7 @@ export function registerProfileTools(server: McpServer) {
   );
 
   server.registerTool(
-    "profile-create",
+    "profile_create",
     {
       description: "Create a profile",
       inputSchema: z
@@ -87,7 +87,7 @@ export function registerProfileTools(server: McpServer) {
   );
 
   server.registerTool(
-    "profile-edit",
+    "profile_edit",
     {
       description: "Edit a profile using YAML",
       inputSchema: z
@@ -112,7 +112,7 @@ export function registerProfileTools(server: McpServer) {
   );
 
   server.registerTool(
-    "profile-delete",
+    "profile_delete",
     {
       description: "Delete a profile",
       inputSchema: z

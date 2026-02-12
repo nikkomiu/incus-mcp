@@ -8,7 +8,7 @@ const projectParam = z.string().min(1).optional();
 
 export function registerProjectTools(server: McpServer) {
   server.registerTool(
-    "project-list",
+    "project_list",
     {
       description: "List projects",
       inputSchema: z
@@ -33,7 +33,7 @@ export function registerProjectTools(server: McpServer) {
   );
 
   server.registerTool(
-    "project-info",
+    "project_info",
     {
       description: "Show project details",
       inputSchema: z
@@ -55,7 +55,7 @@ export function registerProjectTools(server: McpServer) {
   );
 
   server.registerTool(
-    "project-create",
+    "project_create",
     {
       description: "Create a project",
       inputSchema: z
@@ -87,7 +87,7 @@ export function registerProjectTools(server: McpServer) {
   );
 
   server.registerTool(
-    "project-delete",
+    "project_delete",
     {
       description: "Delete a project",
       inputSchema: z
