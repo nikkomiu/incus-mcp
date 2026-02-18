@@ -10,7 +10,8 @@ export function registerNetworkTools(server: McpServer) {
   server.registerTool(
     "network_list",
     {
-      description: "List networks",
+      description:
+        "List networks on a remote (e.g., managed bridges, OVN networks). Use this to discover network names before attaching them to instances or editing configuration.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -37,7 +38,8 @@ export function registerNetworkTools(server: McpServer) {
   server.registerTool(
     "network_info",
     {
-      description: "Show network details",
+      description:
+        "Show full YAML for a network (config, description, status). Use when inspecting DHCP/NAT settings, subnets, or troubleshooting connectivity.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -61,7 +63,8 @@ export function registerNetworkTools(server: McpServer) {
   server.registerTool(
     "network_create",
     {
-      description: "Create a network",
+      description:
+        "Create a managed network. Optionally set a network `type` and config key/values (e.g., `ipv4.address`, `ipv4.nat`).",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -95,7 +98,8 @@ export function registerNetworkTools(server: McpServer) {
   server.registerTool(
     "network_delete",
     {
-      description: "Delete a network",
+      description:
+        "Delete a managed network by name. This fails if the network is in use by instances or profiles.",
       inputSchema: z
         .object({
           name: z.string().min(1),

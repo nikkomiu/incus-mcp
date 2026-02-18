@@ -26,14 +26,16 @@ bun run src/index.ts
 
 ## Tools
 
-- Remotes: `remote-list`, `remote-get-default`
-- Instances: `instance-list`, `instance-info`, `instance-launch`, `instance-start`, `instance-stop`, `instance-delete`, `instance-exec`, `instance-rebuild`
-- Images: `image-list`, `image-info`, `image-delete`
-- Networks: `network-list`, `network-info`, `network-create`, `network-delete`
-- Storage: `storage-pool-list`, `storage-pool-info`, `storage-volume-list`, `storage-volume-info`, `storage-volume-create`, `storage-volume-delete`
-- Profiles: `profile-list`, `profile-info`, `profile-create`, `profile-edit`, `profile-delete`
-- Projects: `project-list`, `project-info`, `project-create`, `project-delete`
-- Snapshots: `snapshot-list`, `snapshot-create`, `snapshot-restore`, `snapshot-delete`
+Tool names are registered with underscores (some MCP clients may display them with hyphens).
+
+- Remotes: `remote_list`, `remote_get_default`, `remote_set_default`, `remote_add`
+- Instances: `instance_list`, `instance_info`, `instance_logs`, `instance_console_log`, `instance_launch`, `instance_start`, `instance_stop`, `instance_delete`, `instance_exec`, `instance_rebuild`
+- Images: `image_list`, `image_info`, `image_delete`
+- Networks: `network_list`, `network_info`, `network_create`, `network_delete`
+- Storage: `storage_pool_list`, `storage_pool_info`, `storage_volume_list`, `storage_volume_info`, `storage_volume_create`, `storage_volume_delete`
+- Profiles: `profile_list`, `profile_info`, `profile_create`, `profile_edit`, `profile_delete`
+- Projects: `project_list`, `project_info`, `project_create`, `project_delete`
+- Snapshots: `snapshot_list`, `snapshot_create`, `snapshot_restore`, `snapshot_delete`
 
 ## Claude Desktop / Claude Code
 

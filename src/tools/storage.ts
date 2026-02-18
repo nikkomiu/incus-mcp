@@ -10,7 +10,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_pool_list",
     {
-      description: "List storage pools",
+      description:
+        "List storage pools on a remote. Use this to discover pool names and drivers (e.g., dir, zfs, btrfs, lvm) before creating volumes or launching instances.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -37,7 +38,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_pool_info",
     {
-      description: "Show storage pool details",
+      description:
+        "Show full YAML for a storage pool (driver, config, and status). Helpful for troubleshooting capacity, backend settings, and pool features.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -61,7 +63,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_volume_list",
     {
-      description: "List storage volumes",
+      description:
+        "List storage volumes in a pool. Use to discover volume names and types before attaching, copying, or deleting volumes.",
       inputSchema: z
         .object({
           pool: z.string().min(1),
@@ -85,7 +88,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_volume_info",
     {
-      description: "Show storage volume details",
+      description:
+        "Show full YAML for a storage volume (config, description, used-by). Useful when debugging mounts, quotas, and how a volume is referenced.",
       inputSchema: z
         .object({
           pool: z.string().min(1),
@@ -116,7 +120,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_volume_create",
     {
-      description: "Create a storage volume",
+      description:
+        "Create a new custom storage volume in a pool, with optional `contentType` and config key/values (e.g., size/quota depending on driver).",
       inputSchema: z
         .object({
           pool: z.string().min(1),
@@ -157,7 +162,8 @@ export function registerStorageTools(server: McpServer) {
   server.registerTool(
     "storage_volume_delete",
     {
-      description: "Delete a storage volume",
+      description:
+        "Delete a storage volume from a pool. This fails if the volume is in use (e.g., attached to an instance or referenced by a profile).",
       inputSchema: z
         .object({
           pool: z.string().min(1),

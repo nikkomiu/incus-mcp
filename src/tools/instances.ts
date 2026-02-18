@@ -12,12 +12,14 @@ import { addProjectFlag, toolError, toolJson, toolText } from "./utils.js";
 
 const remoteParam = z.string().min(1).optional();
 const projectParam = z.string().min(1).optional();
+const consoleTypeParam = z.enum(["console", "vga"]).optional();
 
 export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_list",
     {
-      description: "List instances",
+      description:
+        "List instances (containers/VMs) on a remote. Use this to discover instance names, state, and basic details before calling other instance tools.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -44,7 +46,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_info",
     {
-      description: "Get instance info",
+      description:
+        "Get detailed info for a single instance by name (including config, devices, status, and other metadata).",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -66,9 +69,64 @@ export function registerInstanceTools(server: McpServer) {
   );
 
   server.registerTool(
+    "instance_logs",
+    {
+      description:
+        "Fetch recent instance log entries (from `incus info --show-log`). Useful when an instance failed to start, crashed, or is behaving unexpectedly.",
+      inputSchema: z
+        .object({
+          name: z.string().min(1),
+          remote: remoteParam,
+          project: projectParam,
+        })
+        .strict(),
+    },
+    async ({ name, remote, project }) => {
+      try {
+        const args = ["info", remoteTarget(remote, name), "--show-log"];
+        addProjectFlag(args, project);
+        const text = await execText(args);
+        return toolText(text);
+      } catch (error) {
+        return toolError(error);
+      }
+    }
+  );
+
+  server.registerTool(
+    "instance_console_log",
+    {
+      description:
+        "Retrieve the instance's console log buffer (from `incus console --show-log`). Helpful for early boot issues, cloud-init failures, or kernel/serial output.",
+      inputSchema: z
+        .object({
+          name: z.string().min(1),
+          remote: remoteParam,
+          project: projectParam,
+          type: consoleTypeParam,
+        })
+        .strict(),
+    },
+    async ({ name, remote, project, type }) => {
+      try {
+        const args = ["console", remoteTarget(remote, name), "--show-log"];
+        if (type) {
+          args.push("--type", type);
+        }
+        addProjectFlag(args, project);
+        const text = await execText(args);
+        return toolText(text);
+      } catch (error) {
+        return toolError(error);
+      }
+    }
+  );
+
+  server.registerTool(
     "instance_launch",
     {
-      description: "Launch a new instance",
+      description:
+        "Launch a new instance from an image. Supports containers by default or VMs via `vm=true`, with optional profile/network/storage overrides and config key/values.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -125,7 +183,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_start",
     {
-      description: "Start an instance",
+      description:
+        "Start an existing instance (container/VM). Use after `instance_launch`, after a stop, or when recovering from a reboot.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -149,7 +208,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_stop",
     {
-      description: "Stop an instance",
+      description:
+        "Stop a running instance. Set `force=true` to force-stop when a clean shutdown hangs or the guest is unresponsive.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -177,7 +237,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_delete",
     {
-      description: "Delete an instance",
+      description:
+        "Delete an instance. This removes the instance and its root disk; use `force=true` to stop and delete in one step if needed.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -205,7 +266,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_exec",
     {
-      description: "Execute a command in an instance",
+      description:
+        "Execute a command inside an instance and return combined stdout/stderr. Use `cwd` and `env` to control the execution context.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -244,7 +306,8 @@ export function registerInstanceTools(server: McpServer) {
   server.registerTool(
     "instance_rebuild",
     {
-      description: "Rebuild an instance from an image",
+      description:
+        "Rebuild an instance from an image (destructive). This replaces the instance root disk; use `force=true` to proceed without confirmation.",
       inputSchema: z
         .object({
           name: z.string().min(1),

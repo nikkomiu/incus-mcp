@@ -10,7 +10,8 @@ export function registerSnapshotTools(server: McpServer) {
   server.registerTool(
     "snapshot_list",
     {
-      description: "List instance snapshots",
+      description:
+        "List snapshots for an instance. Use this to discover snapshot names before restoring or deleting.",
       inputSchema: z
         .object({
           instance: z.string().min(1),
@@ -34,7 +35,8 @@ export function registerSnapshotTools(server: McpServer) {
   server.registerTool(
     "snapshot_create",
     {
-      description: "Create an instance snapshot",
+      description:
+        "Create a snapshot of an instance. Set `stateful=true` to capture runtime state (when supported), useful for quick rollback points.",
       inputSchema: z
         .object({
           instance: z.string().min(1),
@@ -66,7 +68,8 @@ export function registerSnapshotTools(server: McpServer) {
   server.registerTool(
     "snapshot_restore",
     {
-      description: "Restore an instance snapshot",
+      description:
+        "Restore an instance to a snapshot. This rewinds the instance filesystem; use `stateful=true` when restoring stateful snapshots.",
       inputSchema: z
         .object({
           instance: z.string().min(1),
@@ -100,7 +103,8 @@ export function registerSnapshotTools(server: McpServer) {
   server.registerTool(
     "snapshot_delete",
     {
-      description: "Delete an instance snapshot",
+      description:
+        "Delete a snapshot from an instance. Use to clean up old rollback points and reclaim storage.",
       inputSchema: z
         .object({
           instance: z.string().min(1),

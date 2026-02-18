@@ -7,7 +7,8 @@ export function registerRemoteTools(server: McpServer) {
   server.registerTool(
     "remote_list",
     {
-      description: "List configured Incus remotes",
+      description:
+        "List configured Incus remotes from your local `incus remote` config. Use this to discover remote names (e.g., `local`, `prod`) for other tools.",
       inputSchema: z.object({}).strict(),
     },
     async () => {
@@ -23,7 +24,8 @@ export function registerRemoteTools(server: McpServer) {
   server.registerTool(
     "remote_get_default",
     {
-      description: "Get the default Incus remote",
+      description:
+        "Get the default remote name used when a tool's `remote` parameter is omitted.",
       inputSchema: z.object({}).strict(),
     },
     async () => {
@@ -39,7 +41,8 @@ export function registerRemoteTools(server: McpServer) {
   server.registerTool(
     "remote_set_default",
     {
-      description: "Set the default Incus remote",
+      description:
+        "Set the default remote name. After this, tools without an explicit `remote` will target the new default.",
       inputSchema: z
         .object({
           name: z.string().min(1, "Remote name is required"),
@@ -60,7 +63,8 @@ export function registerRemoteTools(server: McpServer) {
   server.registerTool(
     "remote_add",
     {
-      description: "Add a new Incus remote",
+      description:
+        "Add a new Incus remote to your local configuration. Supports certificate acceptance and password/token authentication for connecting to a remote Incus server.",
       inputSchema: z
         .object({
           name: z.string().min(1, "Remote name is required"),

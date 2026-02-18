@@ -10,7 +10,8 @@ export function registerProjectTools(server: McpServer) {
   server.registerTool(
     "project_list",
     {
-      description: "List projects",
+      description:
+        "List projects on a remote. Use this to discover project names and confirm isolation boundaries for instances, networks, and storage.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -35,7 +36,8 @@ export function registerProjectTools(server: McpServer) {
   server.registerTool(
     "project_info",
     {
-      description: "Show project details",
+      description:
+        "Show full YAML for a project (config and limits). Useful for checking per-project restrictions and feature flags.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -57,7 +59,8 @@ export function registerProjectTools(server: McpServer) {
   server.registerTool(
     "project_create",
     {
-      description: "Create a project",
+      description:
+        "Create a new project, optionally with a description and config key/values. Use projects to separate environments (dev/stage/prod) on the same Incus server.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -89,7 +92,8 @@ export function registerProjectTools(server: McpServer) {
   server.registerTool(
     "project_delete",
     {
-      description: "Delete a project",
+      description:
+        "Delete a project by name. This fails if the project still has resources (instances, networks, volumes, etc.).",
       inputSchema: z
         .object({
           name: z.string().min(1),

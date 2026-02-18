@@ -10,7 +10,8 @@ export function registerImageTools(server: McpServer) {
   server.registerTool(
     "image_list",
     {
-      description: "List images",
+      description:
+        "List images available on a remote (by fingerprint, aliases, size, and other metadata). Use this to find an image fingerprint or confirm an image exists before launching.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -37,7 +38,8 @@ export function registerImageTools(server: McpServer) {
   server.registerTool(
     "image_info",
     {
-      description: "Get image info",
+      description:
+        "Get details for a specific image fingerprint (metadata, properties, aliases). Useful when debugging image selection or pinning an exact fingerprint.",
       inputSchema: z
         .object({
           fingerprint: z.string().min(1),
@@ -61,7 +63,8 @@ export function registerImageTools(server: McpServer) {
   server.registerTool(
     "image_delete",
     {
-      description: "Delete an image",
+      description:
+        "Delete an image by fingerprint from a remote. Use to clean up unused images; this does not delete instances that were created from the image.",
       inputSchema: z
         .object({
           fingerprint: z.string().min(1),

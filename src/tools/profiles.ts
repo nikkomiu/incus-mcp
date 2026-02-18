@@ -10,7 +10,8 @@ export function registerProfileTools(server: McpServer) {
   server.registerTool(
     "profile_list",
     {
-      description: "List profiles",
+      description:
+        "List profiles on a remote/project. Use this to discover profile names before launching instances or applying configuration changes.",
       inputSchema: z
         .object({
           remote: remoteParam,
@@ -37,7 +38,8 @@ export function registerProfileTools(server: McpServer) {
   server.registerTool(
     "profile_info",
     {
-      description: "Show profile details",
+      description:
+        "Show full YAML for a profile (config and devices). Helpful for auditing shared defaults applied to instances.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -61,7 +63,8 @@ export function registerProfileTools(server: McpServer) {
   server.registerTool(
     "profile_create",
     {
-      description: "Create a profile",
+      description:
+        "Create a new profile, optionally with a description. Use profiles to share common config/devices across many instances.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -89,7 +92,8 @@ export function registerProfileTools(server: McpServer) {
   server.registerTool(
     "profile_edit",
     {
-      description: "Edit a profile using YAML",
+      description:
+        "Replace a profile's configuration using YAML (equivalent to `incus profile edit`). Use when making multiple config/device changes at once.",
       inputSchema: z
         .object({
           name: z.string().min(1),
@@ -114,7 +118,8 @@ export function registerProfileTools(server: McpServer) {
   server.registerTool(
     "profile_delete",
     {
-      description: "Delete a profile",
+      description:
+        "Delete a profile by name. This fails if the profile is in use by instances.",
       inputSchema: z
         .object({
           name: z.string().min(1),
